@@ -31,6 +31,12 @@ class _HomeState extends State<Home> {
     MainController mainController = Get.put(MainController());
     MeteogramController meteogramController = Get.put(MeteogramController());
 
+    setState(() {
+      debugPrint('Error Sending Data.');
+      _sendDataWidget(mainController);
+    });
+
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -50,14 +56,7 @@ class _HomeState extends State<Home> {
               onPressed: (() async {
                 mainController.fetchMainData();
                 meteogramController.fetchMeteogramData();
-
-                await HomeWidget.saveWidgetData("currentTemp", '''${mainController.mainList[0].temperature} °C''');
-                await HomeWidget.saveWidgetData("lastTime", mainController.mainList[0].whens.replaceAll('"', ''));
-                await HomeWidget.saveWidgetData("pressure", mainController.mainList[0].pressure.toString());
-                await HomeWidget.saveWidgetData("humidity", mainController.mainList[0].humidity.toString());
-                await HomeWidget.saveWidgetData("wind", mainController.mainList[0].wind.toString());
-                await HomeWidget.setAppGroupId("<YOUR APP GROUP>");
-                await HomeWidget.updateWidget(name: "HomeScreenWidget", qualifiedAndroidName: "com.example.az_meteo.HomeScreenWidget", androidName: "HomeScreenWidget");
+                _sendDataWidget(mainController);
               }),
               icon: const Icon(
                 Icons.refresh,
@@ -145,4 +144,21 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+}
+
+Future<void> _sendDataWidget(MainController mainController) async{
+  try{
+    mainController.fetchMainData();
+    HomeWidget.saveWidgetData("currentTemp", '''${mainController.mainList[0].temperature} °C''');
+     HomeWidget.saveWidgetData("lastTime", mainController.mainList[0].whens.replaceAll('"', ''));
+     HomeWidget.saveWidgetData("pressure", mainController.mainList[0].pressure.toString());
+     HomeWidget.saveWidgetData("humidity", mainController.mainList[0].humidity.toString());
+     HomeWidget.saveWidgetData("wind", mainController.mainList[0].wind.toString());
+     HomeWidget.setAppGroupId("<YOUR APP GROUP>");
+     HomeWidget.updateWidget(name: "HomeScreenWidget", qualifiedAndroidName: "com.example.az_meteo.HomeScreenWidget", androidName: "HomeScreenWidget");
+
+  } on PlatformException catch (exception) {
+    debugPrint('Error Updating Widget. $exception');
+  }
+
 }
