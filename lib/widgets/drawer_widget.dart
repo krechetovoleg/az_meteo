@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import '../screens/app_setting_screen.dart';
 import '../screens/meteogram_chart_screen.dart';
@@ -16,7 +17,7 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: backgroundColor,
+      backgroundColor: const Color.fromRGBO(26, 44, 60, 0.95),
       child: ListView(
         children: [
           const DrawerHeader(
@@ -27,9 +28,6 @@ class DrawerWidget extends StatelessWidget {
                 width: 80.0,
               ),
             ),
-          ),
-          const Divider(
-            color: textColor,
           ),
           ListTile(
             title: const Text(

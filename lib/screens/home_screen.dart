@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:home_widget/home_widget.dart';
 import '../controllers/main_controller.dart';
 import '../controllers/meteogram_controller.dart';
 import '../widgets/card_widgets.dart';
@@ -16,7 +17,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   @override
   void initState() {
     SystemChrome.setPreferredOrientations([
@@ -50,8 +50,18 @@ class _HomeState extends State<Home> {
               onPressed: (() async {
                 mainController.fetchMainData();
                 meteogramController.fetchMeteogramData();
+
+                await HomeWidget.saveWidgetData("currentTemp", '''${mainController.mainList[0].temperature} °C''');
+                await HomeWidget.saveWidgetData("lastTime", mainController.mainList[0].whens.replaceAll('"', ''));
+                await HomeWidget.saveWidgetData("pressure", mainController.mainList[0].pressure.toString());
+                await HomeWidget.saveWidgetData("humidity", mainController.mainList[0].humidity.toString());
+                await HomeWidget.saveWidgetData("wind", mainController.mainList[0].wind.toString());
+                await HomeWidget.setAppGroupId("<YOUR APP GROUP>");
+                await HomeWidget.updateWidget(name: "HomeScreenWidget", qualifiedAndroidName: "com.example.az_meteo.HomeScreenWidget", androidName: "HomeScreenWidget");
               }),
-              icon: const Icon(Icons.refresh,),
+              icon: const Icon(
+                Icons.refresh,
+              ),
             ),
           ),
         ],
@@ -116,7 +126,6 @@ class _HomeState extends State<Home> {
                                 topStr: 'assets/images/wind.png',
                                 topSize: 24.0,
                                 bottomStr: '${mainController.mainList[0].wind} ${mainController.redDirectionWind(mainController.mainList[0].directionWind)}',
-
                                 bottomSize: 18,
                                 width: (widthScreen * 0.28).roundToDouble(),
                               ),

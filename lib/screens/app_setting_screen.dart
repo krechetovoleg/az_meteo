@@ -32,6 +32,7 @@ class _AppSettingScreenState extends State<AppSettingScreen> {
     final box = GetStorage();
     MainController mainController = Get.put(MainController());
     MeteogramController meteogramController = Get.put(MeteogramController());
+    double widthScreen = Get.width;
 
     return Scaffold(
       appBar: AppBar(
@@ -67,8 +68,12 @@ class _AppSettingScreenState extends State<AppSettingScreen> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 12.0, top: 12.0),
-                        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                          ElevatedButton(
+                        child: Row(crossAxisAlignment: CrossAxisAlignment.start,
+                            //mainAxisAlignment: MainAxisAlignment.center,
+
+                            children: [
+
+                              ElevatedButton(
                             onPressed: () => showDialog(
                               context: context,
                               builder: (BuildContext context) {
@@ -94,14 +99,15 @@ class _AppSettingScreenState extends State<AppSettingScreen> {
                                         meteogramController.fetchMeteogramData();
                                         Navigator.of(context).pop();
                                       },
-                                      style: ElevatedButton.styleFrom(backgroundColor: mainBorderColor.bColor),
-                                      child: const Text('Применить'),
+                                      style: ElevatedButton.styleFrom(backgroundColor: mainBorderColor.bColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),),
+                                      child: const Text('Применить', style: TextStyle(color: textColor, fontSize: 16.0),),
                                     ),
                                   ],
                                 );
                               },
                             ),
-                            style: ElevatedButton.styleFrom(backgroundColor: mainBorderColor.bColor),
+                            style: ElevatedButton.styleFrom(backgroundColor: mainBorderColor.bColor, fixedSize: Size(widthScreen*0.9,40),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                             child: const Text(
                               'Основной цвет',
                               style: TextStyle(color: textColor, fontSize: 16.0),
