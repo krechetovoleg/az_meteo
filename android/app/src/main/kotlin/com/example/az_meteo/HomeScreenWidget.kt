@@ -3,6 +3,7 @@ package com.example.az_meteo
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.widget.RemoteViews
 import es.antonborri.home_widget.HomeWidgetProvider
 import es.antonborri.home_widget.HomeWidgetLaunchIntent
@@ -35,6 +36,14 @@ class HomeScreenWidget : HomeWidgetProvider() {
 
                 val wind = widgetData.getString( "wind", null)
                 setTextViewText(R.id.wind, wind ?: "Нет данных" )
+
+                val colorText = ("#" + (widgetData.getString( "colorText", "#FFFFFF")?.substring(2,8) ?: "#FFFFFF"))
+                val colorInt = Color.parseColor(colorText ?: "#FFFFFF")
+                setTextColor(R.id.currentTemp, colorInt)
+                setTextColor(R.id.lastTime, colorInt)
+                setTextColor(R.id.pressure, colorInt)
+                setTextColor(R.id.humidity, colorInt)
+                setTextColor(R.id.wind, colorInt)
             }
             appWidgetManager.updateAppWidget(appWidgetId, views)
         }

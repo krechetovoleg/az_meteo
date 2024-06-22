@@ -26,7 +26,6 @@ class CardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var mainBorderColor = Get.put(ColorController());
-
     return Obx(
       () {
         return mainBorderColor.isLoading.value

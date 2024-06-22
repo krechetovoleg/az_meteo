@@ -32,7 +32,7 @@
             android:text="AzMeteo"
             android:textAlignment="center"
             android:textColor="#B3F1F1F1"
-            android:textSize="24sp"
+            android:textSize="26sp"
             android:textStyle="bold" />
 
         <TextView
@@ -51,57 +51,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/lay_icon"
+        android:id="@+id/lay2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/lay1"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"
-        android:showDividers="middle">
-
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:contentDescription="@string/add_widget"
-            android:src="@drawable/ic_pressure"
-            android:textAlignment="center" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:contentDescription="@string/add_widget"
-            android:src="@drawable/ic_humidity"
-            android:textAlignment="center" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:contentDescription="@string/add_widget"
-            android:src="@drawable/ic_wind"
-            android:textAlignment="center" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/lay2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lay_icon"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:orientation="horizontal"
         android:showDividers="middle">
