@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
 import '../controllers/color_controller.dart';
 import '../screens/app_setting_screen.dart';
 import '../screens/meteogram_chart_screen.dart';

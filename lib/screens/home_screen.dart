@@ -186,7 +186,7 @@ Future<void> _sendDataWidget(MainController mainController) async {
     final mainBorderColor = Get.put(ColorController());
 
     HomeWidget.saveWidgetData(
-        "currentTemp", '''${mainController.mainList[0].temperature} °C''');
+        "currentTemp", '''${mainController.mainList[0].temperature.toString()} °C''');
     HomeWidget.saveWidgetData(
         "lastTime", mainController.mainList[0].whens.replaceAll('"', ''));
     HomeWidget.saveWidgetData(
