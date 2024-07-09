@@ -34,12 +34,6 @@ class _HomeState extends State<Home> {
     Timer(const Duration(seconds: 5), () {
       refreshData();
     });
-/*
-    timer = Timer.periodic(
-      const Duration(seconds: 120),
-      (Timer t) => refreshData(),
-    );
-*/
   }
 
   void refreshData() {
@@ -52,13 +46,6 @@ class _HomeState extends State<Home> {
     });
   }
 
-/*
-  @override
-  void dispose() {
-    timer.cancel();
-    super.dispose();
-  }
-*/
   @override
   Widget build(BuildContext context) {
     double widthScreen = Get.width;

@@ -26,7 +26,7 @@ class ColorController extends GetxController {
           : const Color.fromARGB(170, 68, 137, 255);
 
       colText = box.read('bColorText') != null
-          ? Color(int.parse(box.read('bColor').split('(0x')[1].split(')')[0],
+          ? Color(int.parse(box.read('bColorText').split('(0x')[1].split(')')[0],
               radix: 16))
           : const Color.fromARGB(170, 68, 137, 255);
     } catch (e) {
