@@ -38,6 +38,7 @@ class ColorController extends GetxController {
     changeTextColor(colText);
   }
 
+
   void changeMainColor(Color inColor) async {
     try {
       isLoading.value = true;
