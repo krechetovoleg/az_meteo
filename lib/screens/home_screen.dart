@@ -172,22 +172,24 @@ Future<void> _sendDataWidget(MainController mainController) async {
   try {
     final mainBorderColor = Get.put(ColorController());
 
-    HomeWidget.saveWidgetData(
-        "currentTemp", '''${mainController.mainList[0].temperature.toString()} °C''');
-    HomeWidget.saveWidgetData(
-        "lastTime", mainController.mainList[0].whens.replaceAll('"', ''));
-    HomeWidget.saveWidgetData(
-        "pressure", "${mainController.mainList[0].pressure}\nмм рт.ст");
-    HomeWidget.saveWidgetData(
-        "humidity", "${mainController.mainList[0].humidity}\n%");
-    HomeWidget.saveWidgetData(
-        "wind", "${mainController.mainList[0].wind}\nм\\с");
-    HomeWidget.saveWidgetData(
-        "colorText", mainBorderColor.bColorText.toHexString());
-    HomeWidget.updateWidget(
-        name: "HomeScreenWidget",
-        qualifiedAndroidName: "com.example.az_meteo.HomeScreenWidget",
-        androidName: "HomeScreenWidget");
+    if (mainController.isLoading()) {
+      HomeWidget.saveWidgetData("currentTemp",
+          '''${mainController.mainList[0].temperature.toString()} °C''');
+      HomeWidget.saveWidgetData(
+          "lastTime", mainController.mainList[0].whens.replaceAll('"', ''));
+      HomeWidget.saveWidgetData(
+          "pressure", "${mainController.mainList[0].pressure}\nмм рт.ст");
+      HomeWidget.saveWidgetData(
+          "humidity", "${mainController.mainList[0].humidity}\n%");
+      HomeWidget.saveWidgetData(
+          "wind", "${mainController.mainList[0].wind}\nм\\с");
+      HomeWidget.saveWidgetData(
+          "colorText", mainBorderColor.bColorText.toHexString());
+      HomeWidget.updateWidget(
+          name: "HomeScreenWidget",
+          qualifiedAndroidName: "com.example.az_meteo.HomeScreenWidget",
+          androidName: "HomeScreenWidget");
+    }
   } on PlatformException catch (exception) {
     debugPrint('Error Updating Widget. $exception');
   }
