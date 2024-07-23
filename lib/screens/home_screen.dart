@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:home_widget/home_widget.dart';
 import '../controllers/color_controller.dart';
 import '../controllers/main_controller.dart';
@@ -173,22 +174,24 @@ Future<void> _sendDataWidget(MainController mainController) async {
     final mainBorderColor = Get.put(ColorController());
 
     if (mainController.isLoading()) {
-      HomeWidget.saveWidgetData("currentTemp",
-          '''${mainController.mainList[0].temperature.toString()} °C''');
-      HomeWidget.saveWidgetData(
-          "lastTime", mainController.mainList[0].whens.replaceAll('"', ''));
-      HomeWidget.saveWidgetData(
-          "pressure", "${mainController.mainList[0].pressure}\nмм рт.ст");
-      HomeWidget.saveWidgetData(
-          "humidity", "${mainController.mainList[0].humidity}\n%");
-      HomeWidget.saveWidgetData(
-          "wind", "${mainController.mainList[0].wind}\nм\\с");
-      HomeWidget.saveWidgetData(
-          "colorText", mainBorderColor.bColorText.toHexString());
-      HomeWidget.updateWidget(
-          name: "HomeScreenWidget",
-          qualifiedAndroidName: "com.example.az_meteo.HomeScreenWidget",
-          androidName: "HomeScreenWidget");
+      if (mainController.mainList.isNotEmpty) {
+        HomeWidget.saveWidgetData("currentTemp",
+            '''${mainController.mainList[0].temperature.toString()} °C''');
+        HomeWidget.saveWidgetData(
+            "lastTime", mainController.mainList[0].whens.replaceAll('"', ''));
+        HomeWidget.saveWidgetData(
+            "pressure", "${mainController.mainList[0].pressure}\nмм рт.ст");
+        HomeWidget.saveWidgetData(
+            "humidity", "${mainController.mainList[0].humidity}\n%");
+        HomeWidget.saveWidgetData(
+            "wind", "${mainController.mainList[0].wind}\nм\\с");
+        HomeWidget.saveWidgetData(
+            "colorText", mainBorderColor.bColorText.toHexString());
+        HomeWidget.updateWidget(
+            name: "HomeScreenWidget",
+            qualifiedAndroidName: "com.example.az_meteo.HomeScreenWidget",
+            androidName: "HomeScreenWidget");
+      }
     }
   } on PlatformException catch (exception) {
     debugPrint('Error Updating Widget. $exception');
