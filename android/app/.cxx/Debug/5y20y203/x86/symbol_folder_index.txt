@@ -1,0 +1,1 @@
+/home/krechet/Developer/Flutter/az_meteo/build/app/intermediates/cxx/Debug/5y20y203/obj/x86

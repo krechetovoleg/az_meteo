@@ -15,7 +15,6 @@ class MonthScreen extends StatefulWidget {
 }
 
 class _MonthScreenState extends State<MonthScreen> {
-
   @override
   void initState() {
     SystemChrome.setPreferredOrientations([
@@ -41,7 +40,8 @@ class _MonthScreenState extends State<MonthScreen> {
     var isPortrait = MediaQuery.of(context).orientation;
 
     double widthScreen = Get.width;
-    final MonthChartController monthChartController = Get.put(MonthChartController());
+    final MonthChartController monthChartController =
+        Get.put(MonthChartController());
     var mainBorderColor = Get.put(ColorController());
     final ZoomPanBehavior zoomPanBehavior;
 
@@ -75,46 +75,63 @@ class _MonthScreenState extends State<MonthScreen> {
               } else {
                 return monthChartController.monthChartList.isNotEmpty
                     ? Container(
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), boxShadow: [
-                          BoxShadow(color: mainBorderColor.bColor.withOpacity(0.5), spreadRadius: 2, blurRadius: 100),
-                        ]),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                  color:
+                                      mainBorderColor.bColor.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 100),
+                            ]),
                         width: (widthScreen * 0.99).roundToDouble(),
                         child: Card(
                           color: backgroundColor,
                           shape: RoundedRectangleBorder(
-                            side: BorderSide(color: mainBorderColor.bColor, width: 2),
+                            side: BorderSide(
+                                color: mainBorderColor.bColor, width: 2),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: SfCartesianChart(
-                            crosshairBehavior:
-                                CrosshairBehavior(enable: true, activationMode: ActivationMode.longPress),
+                            crosshairBehavior: CrosshairBehavior(
+                                enable: true,
+                                activationMode: ActivationMode.longPress),
                             zoomPanBehavior: zoomPanBehavior,
                             title: ChartTitle(
                               text:
                                   'График t°C за месяц\r\nmax : ${monthChartController.maxx} min : ${monthChartController.minn}',
-                              textStyle: const TextStyle(fontFamily: 'ChakraPetch', fontSize: 18.0, color: textColor),
+                              textStyle: const TextStyle(
+                                  fontFamily: 'ChakraPetch',
+                                  fontSize: 18.0,
+                                  color: textColor),
                             ),
                             plotAreaBorderWidth: 0,
                             backgroundColor: backgroundColor,
-                            primaryXAxis: CategoryAxis(
+                            primaryXAxis: const CategoryAxis(
                               title: AxisTitle(
                                 text: 'Время',
-                                textStyle: const TextStyle(color: textColor, fontSize: 14),
+                                textStyle:
+                                    TextStyle(color: textColor, fontSize: 14),
                               ),
                             ),
-                            primaryYAxis: NumericAxis(
+                            primaryYAxis: const NumericAxis(
                               title: AxisTitle(
                                 text: 'Температура',
-                                textStyle: const TextStyle(color: textColor, fontSize: 14),
+                                textStyle:
+                                    TextStyle(color: textColor, fontSize: 14),
                               ),
                             ),
-                            tooltipBehavior: TooltipBehavior(enable: true, header: 'Время : Температура'),
-                            series: <ChartSeries>[
+                            tooltipBehavior: TooltipBehavior(
+                                enable: true, header: 'Время : Температура'),
+                            series: <CartesianSeries>[
                               SplineSeries<MonthChartModel, String>(
                                 dataSource: monthChartController.monthChartList,
-                                xValueMapper: (MonthChartModel val, _) => val.times,
-                                yValueMapper: (MonthChartModel val, _) => val.temperature,
-                                pointColorMapper: (MonthChartModel val, _) => val.colorPoint,
+                                xValueMapper: (MonthChartModel val, _) =>
+                                    val.times,
+                                yValueMapper: (MonthChartModel val, _) =>
+                                    val.temperature,
+                                pointColorMapper: (MonthChartModel val, _) =>
+                                    val.colorPoint,
                               ),
                             ],
                           ),

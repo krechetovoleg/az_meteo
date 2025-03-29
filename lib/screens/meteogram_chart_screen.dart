@@ -15,7 +15,6 @@ class MeteogramScreen extends StatefulWidget {
 }
 
 class _MeteogramScreenState extends State<MeteogramScreen> {
-
   @override
   void initState() {
     SystemChrome.setPreferredOrientations([
@@ -98,9 +97,9 @@ class _MeteogramScreenState extends State<MeteogramScreen> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: SfCartesianChart(
-                            legend: Legend(
+                            legend: const Legend(
                               isVisible: true,
-                              textStyle: const TextStyle(
+                              textStyle: TextStyle(
                                 color: textColor,
                                 fontSize: 12.0,
                               ),
@@ -112,9 +111,9 @@ class _MeteogramScreenState extends State<MeteogramScreen> {
                               activationMode: ActivationMode.longPress,
                             ),
                             zoomPanBehavior: zoomPanBehavior,
-                            title: ChartTitle(
+                            title: const ChartTitle(
                               text: 'Суточная среднечасовая метеограмма',
-                              textStyle: const TextStyle(
+                              textStyle: TextStyle(
                                 fontFamily: 'Roboto',
                                 fontSize: 18.0,
                                 color: textColor,
@@ -122,32 +121,32 @@ class _MeteogramScreenState extends State<MeteogramScreen> {
                             ),
                             plotAreaBorderWidth: 0,
                             backgroundColor: backgroundColor,
-                            primaryXAxis: CategoryAxis(
+                            primaryXAxis: const CategoryAxis(
                               title: AxisTitle(
                                 text: 'Время',
-                                textStyle: const TextStyle(
+                                textStyle: TextStyle(
                                   color: textColor,
                                   fontSize: 14,
                                 ),
                               ),
                             ),
-                            primaryYAxis: NumericAxis(
+                            primaryYAxis: const NumericAxis(
                               title: AxisTitle(
                                 text:
                                     'Температура - Влажность - Скорость ветра',
-                                textStyle: const TextStyle(
+                                textStyle: TextStyle(
                                   color: textColor,
                                   fontSize: 14,
                                 ),
                               ),
                             ),
                             tooltipBehavior: TooltipBehavior(enable: true),
-                            axes: [
+                            axes: const [
                               NumericAxis(
                                 name: 'yAsisPressure',
                                 title: AxisTitle(
                                   text: 'Давление',
-                                  textStyle: const TextStyle(
+                                  textStyle: TextStyle(
                                     color: textColor,
                                     fontSize: 14,
                                   ),
@@ -156,7 +155,7 @@ class _MeteogramScreenState extends State<MeteogramScreen> {
                                 interval: 1.0,
                               ),
                             ],
-                            series: <ChartSeries>[
+                            series: <CartesianSeries>[
                               SplineSeries<MeteogramCharModel, String>(
                                 name: 'Тем-ра',
                                 dataSource:

@@ -15,7 +15,6 @@ class ToDayScreen extends StatefulWidget {
 }
 
 class _ToDayScreenState extends State<ToDayScreen> {
-
   @override
   void initState() {
     SystemChrome.setPreferredOrientations([
@@ -41,7 +40,8 @@ class _ToDayScreenState extends State<ToDayScreen> {
     var isPortrait = MediaQuery.of(context).orientation;
 
     double widthScreen = Get.width;
-    final TodayChartController todayChartController = Get.put(TodayChartController());
+    final TodayChartController todayChartController =
+        Get.put(TodayChartController());
     var mainBorderColor = Get.put(ColorController());
     final ZoomPanBehavior zoomPanBehavior;
 
@@ -75,45 +75,62 @@ class _ToDayScreenState extends State<ToDayScreen> {
               } else {
                 return todayChartController.todayChartList.isNotEmpty
                     ? Container(
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), boxShadow: [
-                          BoxShadow(color: mainBorderColor.bColor.withOpacity(0.5), spreadRadius: 2, blurRadius: 100),
-                        ]),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                  color:
+                                      mainBorderColor.bColor.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 100),
+                            ]),
                         width: (widthScreen * 0.99).roundToDouble(),
                         child: Card(
                           color: backgroundColor,
                           shape: RoundedRectangleBorder(
-                            side: BorderSide(color: mainBorderColor.bColor, width: 2),
+                            side: BorderSide(
+                                color: mainBorderColor.bColor, width: 2),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: SfCartesianChart(
-                            crosshairBehavior:
-                                CrosshairBehavior(enable: true, activationMode: ActivationMode.longPress),
+                            crosshairBehavior: CrosshairBehavior(
+                                enable: true,
+                                activationMode: ActivationMode.longPress),
                             zoomPanBehavior: zoomPanBehavior,
                             title: ChartTitle(
                               text:
                                   'График t°C за сегодня\r\nmax : ${todayChartController.maxx} min : ${todayChartController.minn}',
-                              textStyle: const TextStyle(fontFamily: 'ChakraPetch', fontSize: 18.0, color: textColor),
+                              textStyle: const TextStyle(
+                                  fontFamily: 'ChakraPetch',
+                                  fontSize: 18.0,
+                                  color: textColor),
                             ),
                             backgroundColor: backgroundColor,
-                            primaryXAxis: CategoryAxis(
+                            primaryXAxis: const CategoryAxis(
                               title: AxisTitle(
                                 text: 'Время',
-                                textStyle: const TextStyle(color: textColor, fontSize: 14),
+                                textStyle:
+                                    TextStyle(color: textColor, fontSize: 14),
                               ),
                             ),
-                            primaryYAxis: NumericAxis(
+                            primaryYAxis: const NumericAxis(
                               title: AxisTitle(
                                 text: 'Температура',
-                                textStyle: const TextStyle(color: textColor, fontSize: 14),
+                                textStyle:
+                                    TextStyle(color: textColor, fontSize: 14),
                               ),
                             ),
-                            tooltipBehavior: TooltipBehavior(enable: true, header: 'Время : Температура'),
-                            series: <ChartSeries>[
+                            tooltipBehavior: TooltipBehavior(
+                                enable: true, header: 'Время : Температура'),
+                            series: <CartesianSeries>[
                               SplineSeries<TodayChartModel, String>(
                                 dataSource: todayChartController.todayChartList,
-                                xValueMapper: (TodayChartModel val, _) => val.times,
-                                yValueMapper: (TodayChartModel val, _) => val.temperature,
-                                pointColorMapper: (TodayChartModel val, _) => val.colorPoint,
+                                xValueMapper: (TodayChartModel val, _) =>
+                                    val.times,
+                                yValueMapper: (TodayChartModel val, _) =>
+                                    val.temperature,
+                                pointColorMapper: (TodayChartModel val, _) =>
+                                    val.colorPoint,
                               ),
                             ],
                           ),

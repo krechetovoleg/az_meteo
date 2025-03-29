@@ -1,0 +1,2 @@
+/home/krechet/Developer/Flutter/az_meteo/android/app/.cxx/Debug/5y20y203/armeabi-v7a/CMakeFiles/edit_cache.dir
+/home/krechet/Developer/Flutter/az_meteo/android/app/.cxx/Debug/5y20y203/armeabi-v7a/CMakeFiles/rebuild_cache.dir

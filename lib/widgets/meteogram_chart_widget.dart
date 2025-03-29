@@ -43,10 +43,10 @@ class MeteogramWidget extends StatelessWidget {
                     child: Card(
                       color: backgroundColor,
                       child: SfCartesianChart(
-                        legend: Legend(
+                        legend: const Legend(
                           isVisible: true,
                           textStyle:
-                              const TextStyle(color: textColor, fontSize: 10.0),
+                              TextStyle(color: textColor, fontSize: 10.0),
                           position: LegendPosition.bottom,
                           overflowMode: LegendItemOverflowMode.wrap,
                         ),
@@ -57,27 +57,27 @@ class MeteogramWidget extends StatelessWidget {
                         zoomPanBehavior: zoomPanBehavior,
                         plotAreaBorderWidth: 0,
                         backgroundColor: backgroundColor,
-                        primaryXAxis: CategoryAxis(
+                        primaryXAxis: const CategoryAxis(
                           title: AxisTitle(
                             text: 'Время',
                             textStyle:
-                                const TextStyle(color: textColor, fontSize: 10),
+                                TextStyle(color: textColor, fontSize: 10),
                           ),
                         ),
-                        primaryYAxis: NumericAxis(
+                        primaryYAxis: const NumericAxis(
                           title: AxisTitle(
                             text: 'Температура - Влажность - Скорость ветра',
                             textStyle:
-                                const TextStyle(color: textColor, fontSize: 10),
+                                TextStyle(color: textColor, fontSize: 10),
                           ),
                         ),
                         tooltipBehavior: TooltipBehavior(enable: true),
-                        axes: [
+                        axes: const [
                           NumericAxis(
                             name: 'yAsisPressure',
                             title: AxisTitle(
                               text: 'Давление',
-                              textStyle: const TextStyle(
+                              textStyle: TextStyle(
                                 color: textColor,
                                 fontSize: 10,
                               ),
@@ -86,7 +86,7 @@ class MeteogramWidget extends StatelessWidget {
                             interval: 1.0,
                           ),
                         ],
-                        series: <ChartSeries>[
+                        series: <CartesianSeries>[
                           SplineSeries<MeteogramCharModel, String>(
                             name: 'Тем-ра',
                             dataSource:
